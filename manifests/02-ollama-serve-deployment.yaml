@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ollama-serve
+  namespace: ollama
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ollama-serve
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        app: ollama-serve
+    spec:
+      containers:
+      - image: quay.io/wcaban/ollama:latest
+        imagePullPolicy: Always
+        name: container
+        ports:
+        - containerPort: 11434
+          protocol: TCP
+        resources:
+          limits:
+            nvidia.com/gpu: "1"
+          requests:
+            nvidia.com/gpu: "1"
+        terminationMessagePath: /dev/termination-log
+        terminationMessagePolicy: File
+        volumeMounts:
+        - mountPath: /.ollama
+          name: ollama-storage
+      restartPolicy: Always
+      volumes:
+      - name: ollama-storage
+        persistentVolumeClaim:
+          claimName: ollama-storage
