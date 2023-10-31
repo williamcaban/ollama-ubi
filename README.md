@@ -68,4 +68,50 @@ scale. OpenShift includes features such as automatic scaling, self-healing, and 
 applications. It also supports a wide range of programming languages and frameworks, making it accessible to developers of all backgrounds.
 ```
 
-- The models will be availabe over the `ollama` API
+- The available models will be accesible over the `ollama` [API](https://github.com/jmorganca/ollama/blob/main/docs/api.md) which defaults to http://localhost:11434
+    - For deployments to OpenShift using the manifests in this repo get the URL for your application by executing `oc get route ollama-route -n ollama`
+
+```bash
+# retrieving the route
+oc get route ollama-route -n ollama
+NAME           HOST/PORT                       PATH   SERVICES     PORT    TERMINATION   WILDCARD
+ollama-route   ollama.apps.openshift.lab              ollama-svc   11434                 None
+
+# testing the route
+curl -s http://ollama.apps.openshift.lab/api/tags | jq .
+{
+  "models": [
+    {
+      "name": "falcon:7b-instruct",
+      "modified_at": "2023-10-26T14:58:39.763638601Z",
+      "size": 4210994570,
+      "digest": "4280f7257e73108cddb43de89eb9fa28350a21aaaf997b5935719f9de0281563"
+    },
+    {
+      "name": "llama2:13b",
+      "modified_at": "2023-10-24T01:12:40.264559502Z",
+      "size": 7365847104,
+      "digest": "b3f03629d9a68f2660285cd86d786079c38a56a235032557ab9ba170786f0cf3"
+    },
+    {
+      "name": "llama2:latest",
+      "modified_at": "2023-10-24T01:11:14.791578247Z",
+      "size": 3825819519,
+      "digest": "fe938a131f40e6f6d40083c9f0f430a515233eb2edaa6d72eb85c50d64f2300e"
+    },
+    {
+      "name": "mistral:7b-instruct-q5_K_M",
+      "modified_at": "2023-10-24T01:10:09.083592659Z",
+      "size": 5131409362,
+      "digest": "1041946669e8163f5e8f2a505ea9199f7065eb2c3391e1b08f331005c026fd12"
+    },
+    {
+      "name": "mistral:latest",
+      "modified_at": "2023-10-26T19:55:56.073227234Z",
+      "size": 4108916688,
+      "digest": "8aa307f73b2622af521e8f22d46e4b777123c4df91898dcb2e4079dc8fdf579e"
+    }
+  ]
+
+```
+

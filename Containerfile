@@ -12,7 +12,6 @@ RUN dnf -y update \
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-#ENV OLLAMA_ORIGINS  http://localhost:*,http://0.0.0.0:*
 
 
 USER root
@@ -23,6 +22,8 @@ RUN curl https://ollama.ai/install.sh | sh
 
 EXPOSE 11434
 ENV OLLAMA_HOST 0.0.0.0
+#ENV OLLAMA_ORIGINS  http://localhost:*,http://0.0.0.0:*
+#ENV OLLAMA_MODELS /.ollama/models
 
 ENTRYPOINT ["/usr/local/bin/ollama"]
 CMD ["serve"]
