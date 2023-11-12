@@ -4,7 +4,7 @@ OLLAMA_VERSION=$(curl -s "https://api.github.com/repos/jmorganca/ollama/releases
 
 echo ${OLLAMA_VERSION} > VERSION
 
-podman build --no-cache -t quay.io/wcaban/ollama:latest -f Containerfile
+podman build --no-cache --build-arg=VERSION=${OLLAMA_VERSION} -t quay.io/wcaban/ollama:latest -f Containerfile.build
 podman tag quay.io/wcaban/ollama:latest quay.io/wcaban/ollama:${OLLAMA_VERSION}
 
 #podman push quay.io/wcaban/ollama:latest

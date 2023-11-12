@@ -1,4 +1,4 @@
-#FROM docker.io/nvidia/cuda:12.2.2-runtime-ubi8
+#FROM docker.io/nvidia/cuda:12.2.2-runtime-ubi9
 FROM docker.io/nvidia/cuda:12.2.2-devel-ubi9
 
 LABEL maintainer=william.caban@gmail.com \

@@ -1,0 +1,38 @@
+FROM docker.io/nvidia/cuda:12.2.2-devel-ubi9
+
+ARG VERSION
+
+RUN dnf -y update \
+    && dnf install -y --nodocs pciutils cmake golang git \
+    && dnf clean all && rm -rf /var/cache/* \
+    && git clone --depth 1 --branch $VERSION https://github.com/jmorganca/ollama.git
+
+#USER root
+WORKDIR /ollama
+
+RUN go generate ./... \
+    && go build . \
+    && ls -l /ollama
+
+FROM docker.io/nvidia/cuda:12.2.2-runtime-ubi9
+
+RUN dnf -y update \
+    && dnf install -y --nodocs pciutils \
+    && dnf clean all && rm -rf /var/cache/*
+
+COPY --from=0 /ollama/ollama /usr/local/bin/ollama
+
+LABEL maintainer=william.caban@gmail.com \
+      io.k8s.display-name="Ollama AI" \
+      summary="ollama.ai - tool for running LLMs locally"
+
+#ENV PYTHONDONTWRITEBYTECODE 1
+#ENV PYTHONUNBUFFERED 1
+
+EXPOSE 11434
+ENV OLLAMA_HOST 0.0.0.0
+#ENV OLLAMA_ORIGINS  http://localhost:*,http://0.0.0.0:*
+ENV OLLAMA_MODELS /.ollama/models
+
+ENTRYPOINT ["/usr/local/bin/ollama"]
+CMD ["serve"]

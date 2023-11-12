@@ -5,7 +5,7 @@ This repo contains the Containerfile and manifest for an [UBI-based](https://cat
 The image is published at `quay.io/wcaban/ollama:latest`
 
 
-## Deploy and use the image
+## Deploy the Pod
 
 **Prerequisites:** Must have the NVIDIA OpenShift Operator installed and operational
 
@@ -18,6 +18,8 @@ manifests/
 ├── 03-ollama-svc.yaml
 └── 04-ollama-route.yaml
 ```
+
+## Downlaod LLMs
 
 - Once the Pod is running, login into the Pod to pull desired LLM models
 
@@ -67,6 +69,8 @@ containers. It is based on the popular Kubernetes platform and provides a user-f
 scale. OpenShift includes features such as automatic scaling, self-healing, and built-in security, making it an ideal platform for enterprise
 applications. It also supports a wide range of programming languages and frameworks, making it accessible to developers of all backgrounds.
 ```
+
+## Accessing OLLAMA API
 
 - The available models will be accesible over the `ollama` [API](https://github.com/jmorganca/ollama/blob/main/docs/api.md) which defaults to http://localhost:11434
     - For deployments to OpenShift using the manifests in this repo get the URL for your application by executing `oc get route ollama-route -n ollama`
