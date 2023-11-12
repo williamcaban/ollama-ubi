@@ -1,6 +1,6 @@
 # ollama UBI-based image for OpenShift
 
-This repo contains the Containerfile and manifest for an UBI-based image of [ollama.ai](https://ollama.ai) and the corresponding Kubernetes manifests to run it
+This repo contains the Containerfile and manifest for an [UBI-based](https://catalog.redhat.com/software/base-images) image of [ollama.ai](https://ollama.ai) and the corresponding Kubernetes manifests to run it
 
 The image is published at `quay.io/wcaban/ollama:latest`
 
