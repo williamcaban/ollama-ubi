@@ -16,7 +16,7 @@ spec:
         app: ollama-serve
     spec:
       containers:
-      - image: quay.io/wcaban/ollama:latest
+      - image: homelab-quay-quay.apps.openshift1.avivgts.com/avivgt/ollama:latest
         imagePullPolicy: Always
         name: container
         ports:
