@@ -10,4 +10,4 @@ spec:
   resources:
     requests:
       storage: 200Gi
-  storageClassName: lvms-vg1
+  storageClassName: ocs-external-storagecluster-cephfs
