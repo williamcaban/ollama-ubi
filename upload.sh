@@ -2,5 +2,5 @@
 
 OLLAMA_VERSION=$(cat VERSION)
 
-podman push quay.io/wcaban/ollama:latest
-podman push quay.io/wcaban/ollama:${OLLAMA_VERSION}
+podman push homelab-quay-quay.apps.openshift1.avivgts.com/avivgt/ollama:latest
+podman push homelab-quay-quay.apps.openshift1.avivgts.com/avivgt/ollama:{OLLAMA_VERSION}
