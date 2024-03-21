@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ollama-serve
-  namespace: ollama
+  namespace: codegen-poc
 spec:
   replicas: 1
   selector:
@@ -16,7 +16,7 @@ spec:
         app: ollama-serve
     spec:
       containers:
-      - image: quay.io/wcaban/ollama:latest
+      - image: quay.io/afred/ollama:latest
         imagePullPolicy: Always
         name: container
         ports:

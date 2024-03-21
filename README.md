@@ -2,7 +2,7 @@
 
 This repo contains the Containerfile and manifest for an [UBI-based](https://catalog.redhat.com/software/base-images) image of [ollama.ai](https://ollama.ai) and the corresponding Kubernetes manifests to run it
 
-The images are published at `quay.io/wcaban/ollama:latest`. See the full list of [image tags](https://quay.io/repository/wcaban/ollama?tab=tags&tag=latest)
+The images are published at `quay.io/afred/ollama:latest`. See the full list of [image tags](https://quay.io/repository/afred/ollama?tab=tags&tag=latest)
 
 
 ## Deploy the Pod

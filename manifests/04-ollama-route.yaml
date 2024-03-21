@@ -2,9 +2,9 @@ apiVersion: route.openshift.io/v1
 kind: Route
 metadata:
   name: ollama-route
-  namespace: ollama
+  namespace: codegen-poc
 spec:
-  host: ollama.apps.fennec.shift.zone
+  host: ollama.apps.collective.aws.red-chesterfield.com
   port:
     targetPort: 11434
   to:

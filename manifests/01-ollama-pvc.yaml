@@ -2,7 +2,7 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: ollama-storage
-  namespace: ollama
+  namespace: codegen-poc
 spec:
   accessModes:
     - ReadWriteOnce
