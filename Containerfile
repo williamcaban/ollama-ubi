@@ -1,5 +1,5 @@
 #FROM docker.io/nvidia/cuda:12.2.2-runtime-ubi9
-FROM docker.io/nvidia/cuda:12.2.2-devel-ubi9
+FROM docker.io/nvidia/cuda:12.3.2-devel-ubi9
 
 LABEL maintainer=william.caban@gmail.com \
       io.k8s.display-name="Ollama AI" \

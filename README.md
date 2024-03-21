@@ -72,7 +72,7 @@ applications. It also supports a wide range of programming languages and framewo
 
 ## Accessing OLLAMA API
 
-- The available models will be accesible over the `ollama` [API](https://github.com/jmorganca/ollama/blob/main/docs/api.md) which defaults to http://localhost:11434
+- The available models will be accesible over the `ollama` [API](https://github.com/ollama/ollama/blob/main/docs/api.md) which defaults to http://localhost:11434
     - For deployments to OpenShift using the manifests in this repo get the URL for your application by executing `oc get route ollama-route -n ollama`
 
 ```bash
