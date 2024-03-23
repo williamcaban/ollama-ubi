@@ -1,11 +1,18 @@
-FROM docker.io/nvidia/cuda:12.2.2-devel-ubi9
+FROM docker.io/nvidia/cuda:12.3.2-devel-ubi9
 
 ARG VERSION
+ARG GOLANG_VERSION=1.22.1
+ARG CMAKE_VERSION=3.22.1
 
 RUN dnf -y update \
-    && dnf install -y --nodocs pciutils cmake golang git \
-    && dnf clean all && rm -rf /var/cache/* \
-    && git clone --depth 1 --branch $VERSION https://github.com/jmorganca/ollama.git
+    && dnf install -y --nodocs pciutils git
+
+# The cmake and golang dependencies require special logic
+COPY ./scripts/rh_linux_deps.sh /
+RUN CMAKE_VERSION=${CMAKE_VERSION} GOLANG_VERSION=${GOLANG_VERSION} sh /rh_linux_deps.sh
+
+RUN dnf clean all && rm -rf /var/cache/* \
+    && git clone --depth 1 --branch $VERSION https://github.com/ollama/ollama.git
 
 #USER root
 WORKDIR /ollama
@@ -14,7 +21,7 @@ RUN go generate ./... \
     && go build . \
     && ls -l /ollama
 
-FROM docker.io/nvidia/cuda:12.2.2-runtime-ubi9
+FROM docker.io/nvidia/cuda:12.3.2-runtime-ubi9
 
 RUN dnf -y update \
     && dnf install -y --nodocs pciutils \
