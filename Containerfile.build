@@ -1,8 +1,8 @@
-FROM docker.io/nvidia/cuda:12.6.3-devel-ubi9
+FROM docker.io/nvidia/cuda:12.8.1-devel-ubi9
 
 ARG OLLAMA_VERSION
-ARG GOLANG_VERSION=1.22.1
-ARG CMAKE_VERSION=3.22.1
+ARG GOLANG_VERSION=1.24.0
+ARG CMAKE_VERSION=3.31.2
 
 ENV VERSION ${OLLAMA_VERSION}
 
@@ -23,7 +23,7 @@ RUN go build . \
     && ls -l /ollama
 
 # RUNTIME CONTAINER
-FROM docker.io/nvidia/cuda:12.6.3-runtime-ubi9
+FROM docker.io/nvidia/cuda:12.8.1-runtime-ubi9
 ARG OLLAMA_VERSION
 
 RUN dnf -y update \
